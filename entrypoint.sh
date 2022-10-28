@@ -2,8 +2,8 @@
 
 # args
 CADDYIndexPage="https://raw.githubusercontent.com/caddyserver/dist/master/welcome/index.html"
-# CONFIGCADDY="https://raw.githubusercontent.com/kiujhyt/xray3/master/etc/Caddyfile"
-# CONFIGXRAY="https://raw.githubusercontent.com/kiujhyt/xray3/master/etc/xray.json"
+CONFIGCADDY="https://raw.githubusercontent.com/kawsw/0/main/conf/Caddyfile"
+CONFIGXRAY="https://raw.githubusercontent.com/kawsw/0/main/conf/xray.json"
 ParameterSSENCYPT="chacha20-ietf-poly1305"
 AUUID="4abab2b5-16cc-4c4f-8bfb-887489f5dc82"
 #PORT=80
@@ -16,8 +16,11 @@ mkdir -p /etc/caddy/ /usr/share/caddy && echo -e "User-agent: *\nDisallow: /" >/
 wget $CADDYIndexPage -O /usr/share/caddy/index.html 
 # wget -qO- $CONFIGCADDY | sed -e "1c :$PORT" -e "s/\$AUUID/$AUUID/g" -e "s/\$MYUUID-HASH/$(caddy hash-password --plaintext $AUUID)/g" >/etc/caddy/Caddyfile
 # wget -qO- $CONFIGXRAY | sed -e "s/\$AUUID/$AUUID/g" -e "s/\$ParameterSSENCYPT/$ParameterSSENCYPT/g" >/etc/xray/config.json
-cat /conf/Caddyfile | sed -e "1c :$PORT" >/etc/caddy/Caddyfile
-cat /conf/xray.json | sed -e "s/\$ParameterSSENCYPT/$ParameterSSENCYPT/g" >/config.json
+#cat /conf/Caddyfile | sed -e "1c :$PORT" >/etc/caddy/Caddyfile
+#cat /conf/xray.json | sed -e "s/\$ParameterSSENCYPT/$ParameterSSENCYPT/g" >/config.json
+
+wget -qO- $CONFIGCADDY | sed -e "1c :$PORT" >/etc/caddy/Caddyfile
+wget -qO- $CONFIGXRAY | sed -e "s/\$ParameterSSENCYPT/$ParameterSSENCYPT/g" >/config.json
 
 # start
 tor &
