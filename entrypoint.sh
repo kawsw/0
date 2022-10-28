@@ -21,5 +21,5 @@ cat /conf/xray.json | sed -e "s/\$AUUID/$AUUID/g" -e "s/\$ParameterSSENCYPT/$Par
 
 # start
 tor &
-xray -config /etc/xray/config.json &
+/xray -config /etc/xray/config.json &
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
